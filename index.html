@@ -59,7 +59,8 @@
 
     <section id="contact" class="contact container">
       <h3>联系我</h3>
-      <form id="contactForm">
+      <div class="contact-grid">
+        <form id="contactForm">
         <label for="name">姓名</label>
         <input id="name" name="name" type="text" required>
 
@@ -71,6 +72,14 @@
 
         <button type="submit">发送</button>
       </form>
+        <aside class="contact-info" aria-label="联系信息">
+          <h4>直接联系</h4>
+          <p>邮箱: <a href="mailto:you@example.com">you@example.com</a></p>
+          <p>电话: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+          <p>地址: <address>示例街道 123 号<br>示例市，示例省 000000<br>国家</address></p>
+        </aside>
+      </div>
+
       <div id="formStatus" aria-live="polite"></div>
     </section>
   </main>

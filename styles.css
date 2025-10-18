@@ -158,3 +158,48 @@ body {
     align-items: center;
   }
 }
+
+/* 联系版块：表单与联系信息并排显示（在小屏幕上垂直堆叠） */
+.contact-grid {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.contact-grid form {
+  flex: 1 1 auto;
+}
+
+.contact-info {
+  flex: 0 0 260px;
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.contact-info h4 {
+  margin-bottom: 0.5rem;
+}
+
+.contact-info p,
+.contact-info address {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: #6b8cff;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .contact-grid {
+    flex-direction: column;
+  }
+
+  .contact-info {
+    flex: 1 1 auto;
+  }
+}
