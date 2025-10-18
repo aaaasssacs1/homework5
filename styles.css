@@ -1,0 +1,160 @@
+/* 基本重置 */
+/* Meyer reset-like minimal reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.6;
+  color: #222;
+  background: #f7f7f7;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 头部 */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.25rem;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0.25rem 0.5rem;
+}
+
+/* 英雄区 */
+.hero {
+  background: linear-gradient(135deg, #6b8cff 0%, #88e0d9 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero .cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* 项目网格 */
+.projects {
+  padding: 2rem 0;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.about, .contact {
+  padding: 2rem 0;
+  background: white;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.contact form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.contact input, .contact textarea {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.contact button {
+  width: max-content;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #6b8cff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.site-footer {
+  padding: 1rem 0;
+  text-align: center;
+  color: #777;
+}
+
+/* 响应式 */
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .site-header .container {
+    align-items: center;
+  }
+}

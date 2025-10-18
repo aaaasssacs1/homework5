@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>作品集 - 示例</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">我的作品集</h1>
+      <button id="navToggle" class="nav-toggle" aria-expanded="false">☰</button>
+      <nav id="mainNav" class="main-nav" aria-label="主导航">
+        <ul>
+          <li><a href="#home">首页</a></li>
+          <li><a href="#projects">项目</a></li>
+          <li><a href="#about">关于</a></li>
+          <li><a href="#contact">联系</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <h2>你好，我是开发者</h2>
+        <p>这是一个简单的响应式作品集示例页面。</p>
+        <a class="cta" href="#projects">查看我的作品</a>
+      </div>
+    </section>
+
+    <section id="projects" class="projects container">
+      <h3>精选项目</h3>
+      <div class="grid">
+        <article class="card">
+          <img src="images/project1.jpg" alt="项目 1 示例图">
+          <h4>项目一</h4>
+          <p>项目一的简短描述。</p>
+        </article>
+        <article class="card">
+          <img src="images/project2.jpg" alt="项目 2 示例图">
+          <h4>项目二</h4>
+          <p>项目二的简短描述。</p>
+        </article>
+        <article class="card">
+          <img src="images/project3.jpg" alt="项目 3 示例图">
+          <h4>项目三</h4>
+          <p>项目三的简短描述。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about container">
+      <h3>关于我</h3>
+      <p>一段关于作者的简短介绍，技能、背景等。</p>
+    </section>
+
+    <section id="contact" class="contact container">
+      <h3>联系我</h3>
+      <form id="contactForm">
+        <label for="name">姓名</label>
+        <input id="name" name="name" type="text" required>
+
+        <label for="email">邮箱</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="message">信息</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">发送</button>
+      </form>
+      <div id="formStatus" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 我的名字。保留所有权利。</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
