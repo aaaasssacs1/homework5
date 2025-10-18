@@ -12,11 +12,41 @@ html, body {
   height: 100%;
 }
 
+:root{
+  --bg: #f7f7f7;
+  --surface: #ffffff;
+  --text: #222222;
+  --muted: #777777;
+  --primary: #6b8cff;
+  --accent: #88e0d9;
+  --card-border: #e6e6e6;
+  --glass: rgba(255,255,255,0.6);
+  --transition: 250ms ease;
+}
+
+/* dark theme variables (class-based). JavaScript will add/remove `dark` on <html> to switch themes. */
+:root.dark {
+  --bg: #0f1720;
+  --surface: #0b1220;
+  --text: #e6eef6;
+  --muted: #9aa6b2;
+  --primary: #6b8cff;
+  --card-border: #131820;
+  --glass: rgba(255,255,255,0.03);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   line-height: 1.6;
-  color: #222;
-  background: #f7f7f7;
+  color: var(--text);
+  background: var(--bg);
+  transition: background var(--transition), color var(--transition);
+}
+
+/* reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root { --transition: 0ms; }
+  * { animation-duration: 0ms !important; transition-duration: 0ms !important; }
 }
 
 .container {
@@ -27,8 +57,11 @@ body {
 
 /* 头部 */
 .site-header {
-  background: #fff;
-  border-bottom: 1px solid #e6e6e6;
+  background: var(--surface);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 40;
 }
 
 .site-header .container {
@@ -59,14 +92,16 @@ body {
   text-decoration: none;
   color: inherit;
   padding: 0.25rem 0.5rem;
+  transition: color var(--transition);
 }
 
 /* 英雄区 */
 .hero {
-  background: linear-gradient(135deg, #6b8cff 0%, #88e0d9 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   color: white;
   padding: 4rem 0;
   text-align: center;
+  animation: fadeInUp 450ms var(--transition) both;
 }
 
 .hero .cta {
@@ -91,8 +126,8 @@ body {
 }
 
 .card {
-  background: white;
-  border: 1px solid #e6e6e6;
+  background: var(--surface);
+  border: 1px solid var(--card-border);
   border-radius: 6px;
   overflow: hidden;
   padding: 0.5rem;
@@ -107,9 +142,9 @@ body {
 
 .about, .contact {
   padding: 2rem 0;
-  background: white;
+  background: var(--surface);
   margin-bottom: 1rem;
-  border: 1px solid #eee;
+  border: 1px solid var(--card-border);
   border-radius: 6px;
 }
 
@@ -128,7 +163,7 @@ body {
   width: max-content;
   padding: 0.5rem 1rem;
   border: none;
-  background: #6b8cff;
+  background: var(--primary);
   color: white;
   border-radius: 4px;
   cursor: pointer;
@@ -137,8 +172,51 @@ body {
 .site-footer {
   padding: 1rem 0;
   text-align: center;
-  color: #777;
+  color: var(--muted);
 }
+
+/* page transition: fade in/out */
+body.preload * {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+body:not(.preload) .hero,
+body:not(.preload) .card,
+body:not(.preload) .about,
+body:not(.preload) .contact {
+  opacity: 1;
+  transform: none;
+  transition: opacity 380ms var(--transition), transform 380ms var(--transition);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.header-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.lang-select {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+}
+
+.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px); white-space: nowrap; }
 
 /* 响应式 */
 @media (max-width: 700px) {
@@ -157,6 +235,8 @@ body {
   .site-header .container {
     align-items: center;
   }
+
+  .header-controls { gap: 0.25rem; }
 }
 
 /* 联系版块：表单与联系信息并排显示（在小屏幕上垂直堆叠） */
@@ -194,6 +274,31 @@ body {
   text-decoration: none;
 }
 
+.social-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--glass);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.social-links a:hover {
+  transform: translateY(-2px);
+  transition: transform 180ms var(--transition);
+}
+
 @media (max-width: 700px) {
   .contact-grid {
     flex-direction: column;
@@ -202,4 +307,38 @@ body {
   .contact-info {
     flex: 1 1 auto;
   }
+}
+
+/* improved tap targets on small screens */
+@media (max-width: 420px) {
+  .nav-toggle { font-size: 1.75rem; }
+  .main-nav a { padding: 0.6rem 0.8rem; }
+  .contact button { padding: 0.75rem 1rem; }
+}
+
+/* Map section */
+.map {
+  padding: 1.5rem 0 2rem;
+}
+.map-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.map-wrapper iframe {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  display: block;
+}
+.map-link {
+  padding: 0.5rem 1rem;
+  background: var(--glass);
+  text-align: right;
+}
+.map-link a { color: var(--primary); text-decoration: none; }
+
+@media (max-width: 420px) {
+  .map-wrapper iframe { height: 240px; }
 }
